@@ -1,0 +1,547 @@
+[
+    {
+        "id": "protocol_0",
+        "message_name": "NAS Registration Request",
+        "protocol_type": "nas",
+        "message_type_hex": "0x7E41",
+        "template": {
+            "Message Type": "0x41 (Registration Request)",
+            "Protocol/Security Header Type": "0x7E (Plain 5G NAS message)",
+            "Mandatory Information Elements": [
+                {
+                    "name": "5GS Registration Type + ngKSI",
+                    "iei": null,
+                    "length": "1 octet",
+                    "description": "Registration type (3 bits) and ngKSI (4 bits)"
+                },
+                {
+                    "name": "5GS Mobile Identity",
+                    "iei": null,
+                    "length": "Variable",
+                    "description": "SUCI or 5G-GUTI"
+                }
+            ],
+            "Optional Information Elements": [
+                {
+                    "name": "5GMM Capability",
+                    "iei": "0x10",
+                    "length": "1-15 octets",
+                    "description": "UE 5GMM capabilities"
+                },
+                {
+                    "name": "Requested NSSAI",
+                    "iei": "0x2F",
+                    "length": "2-146 octets",
+                    "description": "Network slice selection"
+                },
+                {
+                    "name": "PDU Session Status",
+                    "iei": "0x50",
+                    "length": "2-34 octets",
+                    "description": "Status of PDU sessions"
+                },
+                {
+                    "name": "Last visited TAI",
+                    "iei": "0x52",
+                    "length": "6 octets",
+                    "description": "Tracking area identity"
+                },
+                {
+                    "name": "S1 UE network capability",
+                    "iei": "0x17",
+                    "length": "2-13 octets",
+                    "description": "For interworking"
+                },
+                {
+                    "name": "Uplink data status",
+                    "iei": "0x40",
+                    "length": "2-34 octets",
+                    "description": "PDU sessions with uplink data"
+                },
+                {
+                    "name": "Allowed PDU session status",
+                    "iei": "0x25",
+                    "length": "2-34 octets",
+                    "description": "Allowed PDU sessions"
+                },
+                {
+                    "name": "UE usage setting",
+                    "iei": "0x18",
+                    "length": "1 octet",
+                    "description": "Voice/data centric"
+                },
+                {
+                    "name": "5GS DRX parameters",
+                    "iei": "0x51",
+                    "length": "1 octet",
+                    "description": "DRX cycle"
+                },
+                {
+                    "name": "MICO indication",
+                    "iei": "0xB-",
+                    "length": "1 octet",
+                    "description": "Mobile initiated connection only"
+                },
+                {
+                    "name": "Payload container",
+                    "iei": "0x7B",
+                    "length": "3-65538 octets",
+                    "description": "Additional information"
+                },
+                {
+                    "name": "Network slicing indication",
+                    "iei": "0x9-",
+                    "length": "1 octet",
+                    "description": "NSSCI and DCNI"
+                },
+                {
+                    "name": "5GS update type",
+                    "iei": "0x53",
+                    "length": "1 octet",
+                    "description": "SMS requested, NG-RAN-RCU, 5GS-PNB-CIoT"
+                }
+            ],
+            "constraints": [
+                "Uses TLV encoding per 3GPP TS 24.501",
+                "Registration type: bits 4-1, ngKSI: bits 8-5 of first octet",
+                "Mobile identity can be SUCI (type 1) or 5G-GUTI (type 2)"
+            ]
+        }
+    },
+    {
+        "id": "protocol_1",
+        "message_name": "NAS Authentication Request",
+        "protocol_type": "nas",
+        "message_type_hex": "0x7E56",
+        "template": {
+            "Message Type": "0x56 (Authentication Request)",
+            "Protocol/Security Header Type": "0x7E (Plain 5G NAS message)",
+            "Mandatory Information Elements": [
+                {
+                    "name": "ngKSI + Spare half octet",
+                    "iei": null,
+                    "length": "1 octet",
+                    "description": "Key set identifier (3 bits) + spare (5 bits)"
+                },
+                {
+                    "name": "ABBA",
+                    "iei": null,
+                    "length": "2 octets",
+                    "description": "Anti-bidding down between architectures"
+                },
+                {
+                    "name": "Authentication Parameter RAND",
+                    "iei": "0x21",
+                    "length": "16 octets",
+                    "description": "Random challenge (128 bits)"
+                },
+                {
+                    "name": "Authentication Parameter AUTN",
+                    "iei": "0x20",
+                    "length": "16 octets",
+                    "description": "Authentication token (128 bits)"
+                }
+            ],
+            "Optional Information Elements": [
+                {
+                    "name": "EAP Message",
+                    "iei": "0x78",
+                    "length": "4-1502 octets",
+                    "description": "EAP-AKA' request"
+                }
+            ],
+            "constraints": [
+                "Uses TLV encoding per 3GPP TS 24.501",
+                "ngKSI uses bits 3-1, bits 8-4 are spare",
+                "RAND and AUTN are always exactly 16 octets",
+                "Used for both 5G-AKA and EAP-AKA' authentication"
+            ]
+        }
+    },
+    {
+        "id": "protocol_2",
+        "message_name": "NAS Authentication Response",
+        "protocol_type": "nas",
+        "message_type_hex": "0x7E57",
+        "template": {
+            "Message Type": "0x57 (Authentication Response)",
+            "Protocol/Security Header Type": "0x7E (Plain 5G NAS message)",
+            "Mandatory Information Elements": [
+                {
+                    "name": "Authentication Response Parameter",
+                    "iei": "0x2D",
+                    "length": "16 octets",
+                    "description": "RES* value (128 bits)"
+                }
+            ],
+            "Optional Information Elements": [
+                {
+                    "name": "EAP Message",
+                    "iei": "0x78",
+                    "length": "4-1502 octets",
+                    "description": "EAP-AKA' response"
+                }
+            ],
+            "constraints": [
+                "Uses TLV encoding per 3GPP TS 24.501",
+                "RES* is always exactly 16 octets for 5G-AKA",
+                "EAP message used only for EAP-AKA' authentication"
+            ]
+        }
+    },
+    {
+        "id": "protocol_3",
+        "message_name": "NAS Service Request",
+        "protocol_type": "nas",
+        "message_type_hex": "0x7E4C",
+        "template": {
+            "Message Type": "0x4C (Service Request)",
+            "Protocol/Security Header Type": "0x7E (Plain 5G NAS message)",
+            "Mandatory Information Elements": [
+                {
+                    "name": "Service Type + ngKSI",
+                    "iei": null,
+                    "length": "1 octet",
+                    "description": "Service type (4 bits) + ngKSI (4 bits)"
+                },
+                {
+                    "name": "5G-S-TMSI",
+                    "iei": null,
+                    "length": "7 octets",
+                    "description": "AMF Set ID (10 bits) + AMF Pointer (6 bits) + 5G-TMSI (32 bits)"
+                }
+            ],
+            "Optional Information Elements": [
+                {
+                    "name": "Uplink data status",
+                    "iei": "0x40",
+                    "length": "2-34 octets",
+                    "description": "PDU sessions with uplink data"
+                },
+                {
+                    "name": "PDU session status",
+                    "iei": "0x50",
+                    "length": "2-34 octets",
+                    "description": "Status of PDU sessions"
+                },
+                {
+                    "name": "Allowed PDU session status",
+                    "iei": "0x25",
+                    "length": "2-34 octets",
+                    "description": "Allowed PDU sessions"
+                },
+                {
+                    "name": "NAS message container",
+                    "iei": "0x71",
+                    "length": "3-n octets",
+                    "description": "Complete NAS message"
+                }
+            ],
+            "constraints": [
+                "Compact format for efficiency",
+                "Service type values: 0=signalling, 1=data, 2=MT services, 3=emergency, 4=emergency fallback",
+                "5G-S-TMSI structure: 48 bits total"
+            ]
+        }
+    },
+    {
+        "id": "protocol_4",
+        "message_name": "NAS Security Mode Command",
+        "protocol_type": "nas",
+        "message_type_hex": "0x7E5D",
+        "template": {
+            "Message Type": "0x5D (Security Mode Command)",
+            "Protocol/Security Header Type": "0x7E (Plain 5G NAS message)",
+            "Mandatory Information Elements": [
+                {
+                    "name": "Selected NAS security algorithms",
+                    "iei": null,
+                    "length": "1 octet",
+                    "description": "Ciphering (4 bits) + Integrity (4 bits)"
+                },
+                {
+                    "name": "ngKSI + Spare half octet",
+                    "iei": null,
+                    "length": "1 octet",
+                    "description": "Key set identifier"
+                },
+                {
+                    "name": "Replayed UE security capabilities",
+                    "iei": null,
+                    "length": "2-3 octets",
+                    "description": "5G-EA and 5G-IA algorithms"
+                }
+            ],
+            "Optional Information Elements": [
+                {
+                    "name": "IMEISV request",
+                    "iei": "0xE-",
+                    "length": "1 octet",
+                    "description": "Request IMEISV from UE"
+                },
+                {
+                    "name": "EPS NAS security algorithms",
+                    "iei": "0x57",
+                    "length": "1 octet",
+                    "description": "For interworking"
+                },
+                {
+                    "name": "Additional 5G security information",
+                    "iei": "0x36",
+                    "length": "1 octet",
+                    "description": "Retransmission, HO"
+                },
+                {
+                    "name": "Replayed S1 UE security capabilities",
+                    "iei": "0x19",
+                    "length": "2-5 octets",
+                    "description": "EPS algorithms"
+                },
+                {
+                    "name": "S1 KSI",
+                    "iei": "0xA-",
+                    "length": "1 octet",
+                    "description": "EPS key set identifier"
+                }
+            ],
+            "constraints": [
+                "Algorithm values: 0=null, 1=128-SNOW, 2=128-AES, 3=128-ZUC",
+                "Must be integrity protected",
+                "Establishes NAS security context"
+            ]
+        }
+    },
+    {
+        "id": "protocol_5",
+        "message_name": "NGAP Initial UE Message",
+        "protocol_type": "ngap",
+        "message_type_hex": "0x0F",
+        "template": {
+            "Message Type": "0x0F (InitialUEMessage)",
+            "Protocol/Security Header Type": "0x00 (NGAP-PDU)",
+            "Mandatory Information Elements": [
+                {
+                    "name": "Message Type",
+                    "iei": null,
+                    "length": "1 octet",
+                    "description": "Procedure code"
+                },
+                {
+                    "name": "RAN-UE-NGAP-ID",
+                    "iei": "0x55",
+                    "length": "4 octets",
+                    "description": "RAN node UE identifier (0 to 2^32-1)"
+                },
+                {
+                    "name": "NAS-PDU",
+                    "iei": "0x26",
+                    "length": "Variable",
+                    "description": "Encapsulated NAS message"
+                },
+                {
+                    "name": "User Location Information",
+                    "iei": "0x79",
+                    "length": "Variable",
+                    "description": "NR CGI or TAI"
+                },
+                {
+                    "name": "RRC Establishment Cause",
+                    "iei": "0x5C",
+                    "length": "1 octet",
+                    "description": "Establishment cause value"
+                }
+            ],
+            "Optional Information Elements": [
+                {
+                    "name": "Five-G-TMSI",
+                    "iei": "0x17",
+                    "length": "5 octets",
+                    "description": "5G Temporary Mobile Subscriber Identity"
+                },
+                {
+                    "name": "AMF Set ID",
+                    "iei": "0x02",
+                    "length": "2 octets",
+                    "description": "AMF Set Identifier"
+                },
+                {
+                    "name": "UE Context Request",
+                    "iei": "0x70",
+                    "length": "1 octet",
+                    "description": "Request UE context from AMF"
+                },
+                {
+                    "name": "Allowed NSSAI",
+                    "iei": "0x00",
+                    "length": "Variable",
+                    "description": "Allowed network slices"
+                }
+            ],
+            "constraints": [
+                "Uses ASN.1 PER encoding per 3GPP TS 38.413",
+                "Container format with criticality flags",
+                "Establishment causes: emergency, highPriorityAccess, mt-Access, mo-Signalling, mo-Data, mo-VoiceCall, mo-VideoCall, mo-SMS, mps-PriorityAccess, mcs-PriorityAccess"
+            ]
+        }
+    },
+    {
+        "id": "protocol_6",
+        "message_name": "NGAP Downlink NAS Transport",
+        "protocol_type": "ngap",
+        "message_type_hex": "0x04",
+        "template": {
+            "Message Type": "0x04 (DownlinkNASTransport)",
+            "Protocol/Security Header Type": "0x00 (NGAP-PDU)",
+            "Mandatory Information Elements": [
+                {
+                    "name": "AMF-UE-NGAP-ID",
+                    "iei": "0x0A",
+                    "length": "8 octets",
+                    "description": "AMF side UE identifier"
+                },
+                {
+                    "name": "RAN-UE-NGAP-ID",
+                    "iei": "0x55",
+                    "length": "4 octets",
+                    "description": "RAN side UE identifier"
+                },
+                {
+                    "name": "NAS-PDU",
+                    "iei": "0x26",
+                    "length": "Variable",
+                    "description": "Encapsulated NAS message"
+                }
+            ],
+            "Optional Information Elements": [
+                {
+                    "name": "AMF Name",
+                    "iei": "0x01",
+                    "length": "Variable",
+                    "description": "Human-readable AMF identifier"
+                },
+                {
+                    "name": "RAN Paging Priority",
+                    "iei": "0x56",
+                    "length": "1 octet",
+                    "description": "Paging priority level"
+                },
+                {
+                    "name": "Mobility Restriction List",
+                    "iei": "0x22",
+                    "length": "Variable",
+                    "description": "Restricted areas"
+                },
+                {
+                    "name": "Index to RAT/Frequency Selection Priority",
+                    "iei": "0x1C",
+                    "length": "1 octet",
+                    "description": "RFSP index"
+                },
+                {
+                    "name": "UE Aggregate Maximum Bit Rate",
+                    "iei": "0x77",
+                    "length": "8 octets",
+                    "description": "DL and UL max rates"
+                }
+            ],
+            "constraints": [
+                "Uses ASN.1 PER encoding per 3GPP TS 38.413",
+                "Used to forward NAS messages from AMF to UE",
+                "AMF-UE-NGAP-ID range: 0 to 2^40-1"
+            ]
+        }
+    },
+    {
+        "id": "protocol_7",
+        "message_name": "RRC Setup Request",
+        "protocol_type": "rrc",
+        "message_type_hex": "N/A",
+        "template": {
+            "Message Type": "RRCSetupRequest (UL-CCCH-Message)",
+            "Protocol/Security Header Type": "N/A (ASN.1 structure)",
+            "Mandatory Information Elements": [
+                {
+                    "name": "UE Identity",
+                    "iei": null,
+                    "length": "39 bits",
+                    "description": "ng-5G-S-TMSI-Part1 or randomValue"
+                },
+                {
+                    "name": "Establishment Cause",
+                    "iei": null,
+                    "length": "3 bits",
+                    "description": "Reason for RRC connection"
+                },
+                {
+                    "name": "Spare",
+                    "iei": null,
+                    "length": "1 bit",
+                    "description": "Set to 0"
+                }
+            ],
+            "Optional Information Elements": [],
+            "constraints": [
+                "Uses ASN.1 PER encoding per 3GPP TS 38.331",
+                "Sent on CCCH logical channel",
+                "Establishment causes: emergency, highPriorityAccess, mt-Access, mo-Signalling, mo-Data, mo-VoiceCall, mo-VideoCall, mo-SMS, mps-PriorityAccess, mcs-PriorityAccess",
+                "Total message size: 48 bits (6 octets) when encoded"
+            ]
+        }
+    },
+    {
+        "id": "protocol_8",
+        "message_name": "RRC Setup Complete",
+        "protocol_type": "rrc",
+        "message_type_hex": "N/A",
+        "template": {
+            "Message Type": "RRCSetupComplete (UL-DCCH-Message)",
+            "Protocol/Security Header Type": "N/A (ASN.1 structure)",
+            "Mandatory Information Elements": [
+                {
+                    "name": "RRC Transaction Identifier",
+                    "iei": null,
+                    "length": "2 bits",
+                    "description": "Transaction ID"
+                },
+                {
+                    "name": "Selected PLMN Identity",
+                    "iei": null,
+                    "length": "3 bits",
+                    "description": "Index of selected PLMN"
+                },
+                {
+                    "name": "Dedicated NAS Message",
+                    "iei": null,
+                    "length": "Variable",
+                    "description": "Initial NAS message"
+                }
+            ],
+            "Optional Information Elements": [
+                {
+                    "name": "Registered AMF",
+                    "iei": null,
+                    "length": "Variable",
+                    "description": "AMF identifier"
+                },
+                {
+                    "name": "GUAMI Type",
+                    "iei": null,
+                    "length": "1 bit",
+                    "description": "Native or mapped GUAMI"
+                },
+                {
+                    "name": "ng-5G-S-TMSI-Value",
+                    "iei": null,
+                    "length": "48 bits",
+                    "description": "5G-S-TMSI if available"
+                }
+            ],
+            "constraints": [
+                "Uses ASN.1 PER encoding per 3GPP TS 38.331",
+                "Sent on DCCH logical channel",
+                "Must include initial NAS message (e.g., Registration Request)",
+                "Confirms successful RRC connection establishment"
+            ]
+        }
+    }
+]

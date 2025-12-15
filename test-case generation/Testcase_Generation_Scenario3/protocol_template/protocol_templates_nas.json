@@ -1,0 +1,1211 @@
+{
+  "templates": {
+    "nas": {
+      "5GMM": {
+        "NAS Registration Request": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x41",
+          "Mandatory Information Elements": [
+            {
+              "name": "5GS Registration Type + ngKSI",
+              "iei": "0xC1",
+              "length": 1,
+              "example": "0x01"
+            },
+            {
+              "name": "5GS Mobile Identity",
+              "iei": null,
+              "length": "Variable",
+              "type": "5G-SUCI",
+              "example": "suci-0-208-93-0000000001"
+            }
+          ],
+          "Optional Information Elements": [
+            {
+              "name": "5GMM Capability",
+              "iei": "0x10",
+              "length": "1-15 octets"
+            },
+            {
+              "name": "Requested NSSAI",
+              "iei": "0x2F",
+              "length": "2-146 octets"
+            },
+            {
+              "name": "PDU Session Status",
+              "iei": "0x50",
+              "length": "2-34 octets"
+            },
+            {
+              "name": "Last visited TAI",
+              "iei": "0x52",
+              "length": "6 octets"
+            },
+            {
+              "name": "S1 UE network capability",
+              "iei": "0x17",
+              "length": "2-13 octets"
+            },
+            {
+              "name": "Uplink data status",
+              "iei": "0x40",
+              "length": "2-34 octets"
+            },
+            {
+              "name": "Allowed PDU session status",
+              "iei": "0x25",
+              "length": "2-34 octets"
+            },
+            {
+              "name": "UE usage setting",
+              "iei": "0x18",
+              "length": "1 octet"
+            },
+            {
+              "name": "5GS DRX parameters",
+              "iei": "0x51",
+              "length": "1 octet"
+            },
+            {
+              "name": "MICO indication",
+              "iei": "0xB-",
+              "length": "1 octet"
+            },
+            {
+              "name": "Payload container",
+              "iei": "0x7B",
+              "length": "3-65538 octets"
+            },
+            {
+              "name": "Network slicing indication",
+              "iei": "0x9-",
+              "length": "1 octet"
+            },
+            {
+              "name": "5GS update type",
+              "iei": "0x53",
+              "length": "1 octet"
+            }
+          ]
+        },
+        "NAS Authentication Request": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x56",
+          "Mandatory Information Elements": [
+            {
+              "name": "ngKSI + Spare half octet",
+              "iei": null,
+              "length": "1 octet"
+            },
+            {
+              "name": "ABBA",
+              "iei": null,
+              "length": "3 - n octets"
+            }
+          ],
+          "Optional Information Elements": [
+            {
+              "name": "Authentication Parameter RAND",
+              "iei": "0x21",
+              "length": "17 octets"
+            },
+            {
+              "name": "Authentication Parameter AUTN",
+              "iei": "0x20",
+              "length": "18 octets"
+            },
+            {
+              "name": "EAP Message",
+              "iei": "0x78",
+              "length": "7-1503 octets"
+            }
+          ]
+        },
+        "NAS Authentication Response": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x57",
+          "Mandatory Information Elements": [],
+          "Optional Information Elements": [
+            {
+              "name": "Authentication Response Parameter",
+              "iei": "0x2D",
+              "length": "18 octets"
+            },
+            {
+              "name": "EAP Message",
+              "iei": "0x78",
+              "length": "7-1503 octets"
+            }
+          ]
+        },
+        "NAS Service Request": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x4C",
+          "Mandatory Information Elements": [
+            {
+              "name": "Service Type + ngKSI",
+              "iei": null,
+              "length": "1 octet",
+              "example": "0x27"
+            },
+            {
+              "name": "5G-S-TMSI",
+              "iei": null,
+              "length": "9 octets",
+              "example": "0xD2 10 F1 23 45 67 89 AB"
+            }
+          ],
+          "Optional Information Elements": [
+            {
+              "name": "Uplink data status",
+              "iei": "0x40",
+              "length": "4-34 octets"
+            },
+            {
+              "name": "PDU session status",
+              "iei": "0x50",
+              "length": "4-34 octets"
+            },
+            {
+              "name": "Allowed PDU session status",
+              "iei": "0x25",
+              "length": "4-34 octets"
+            },
+            {
+              "name": "NAS message container",
+              "iei": "0x71",
+              "length": "4-n octets"
+            }
+          ]
+        },
+        "NAS Security Mode Command": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x5D",
+          "Mandatory Information Elements": [
+            {
+              "name": "Selected NAS security algorithms",
+              "iei": null,
+              "length": "1 octet"
+            },
+            {
+              "name": "ngKSI + Spare half octet",
+              "iei": null,
+              "length": "1 octet",
+              "example": "0x07"
+            },
+            {
+              "name": "Replayed UE security capabilities",
+              "iei": null,
+              "length": "3-9 octets"
+            }
+          ],
+          "Optional Information Elements": [
+            {
+              "name": "IMEISV request",
+              "iei": "0xE0",
+              "length": "1 octet"
+            },
+            {
+              "name": "EPS NAS security algorithms",
+              "iei": "0x57",
+              "length": "2 octet"
+            },
+            {
+              "name": "Additional 5G security information",
+              "iei": "0x36",
+              "length": "3 octet"
+            },
+            {
+              "name": "EAP Message",
+              "iei": "0x78",
+              "length": "7-1503 octets"
+            },
+            {
+              "name": "ABBA",
+              "iei": "0x38",
+              "length": "4-n octets"
+            },
+            {
+              "name": "Replayed S1 UE security capabilities",
+              "iei": "0x19",
+              "length": "4-7 octets"
+            }
+          ]
+        },
+        "Registration Accept": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x42",
+          "Mandatory Information Elements": [
+            {
+              "name": "5GS registration result",
+              "iei": null,
+              "length": "2 octet",
+              "example": "0x0000"
+            }
+          ],
+          "Optional Information Elements": [
+            {
+              "name": "Allowed NSSAI",
+              "iei": "0x2F",
+              "length": "4-74"
+            },
+            {
+              "name": "Configured NSSAI",
+              "iei": "0x6A",
+              "length": "4-146"
+            },
+            {
+              "name": "T3512 Value",
+              "iei": "0x58",
+              "length": "1 octet"
+            },
+            {
+              "name": "5G-GUTI",
+              "iei": "0x50",
+              "length": "Variable"
+            }
+          ]
+        },
+        "Registration Complete": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x43",
+          "Mandatory Information Elements": [],
+          "Optional Information Elements": [
+            {
+              "name": "SOR transparent container",
+              "iei": "0x73",
+              "length": "20 octets"
+            }
+          ]
+        },
+        "Registration Reject": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x44",
+          "Mandatory Information Elements": [
+            {
+              "name": "5GMM Cause",
+              "iei": "0x5E",
+              "length": "1 octet"
+            }
+          ],
+          "Optional Information Elements": [
+            {
+              "name": "T3346 Value",
+              "iei": "0x5F",
+              "length": "3 octets"
+            },
+            {
+              "name": "T3502 Value",
+              "iei": "0x16",
+              "length": "3 octets"
+            },
+            {
+              "name": "EAP Message",
+              "iei": "0x78",
+              "length": "7-1503 octets"
+            },
+            {
+              "name": "Rejected NSSAI",
+              "iei": "0x69",
+              "length": "4-42 octets"
+            },
+            {
+              "name": "CAG information list",
+              "iei": "0x75",
+              "length": "3-n octets"
+            }
+          ]
+        },
+        "Deregistration Request (UE originating)": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x45",
+          "Mandatory Information Elements": [
+            {
+              "name": "De-registration type",
+              "iei": null,
+              "length": "1/2 octet",
+              "example": "0x1"
+            },
+            {
+              "name": "ngKSI",
+              "iei": null,
+              "length": "1/2 octet",
+              "example": "0x7"
+            },
+            {
+              "name": "5GS Mobile Identity",
+              "iei": null,
+              "length": "6-n octets",
+              "type": "5G-GUTI or SUCI",
+              "example": "0x06 21 F3 10 12 34 56 78 9A"
+            }
+          ],
+          "Optional Information Elements": []
+        },
+        "Deregistration Accept": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x46",
+          "Mandatory Information Elements": [],
+          "Optional Information Elements": []
+        },
+        "Service Accept": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x4D",
+          "Mandatory Information Elements": [],
+          "Optional Information Elements": [
+            {
+              "name": "PDU session status",
+              "iei": "0x50",
+              "length": "4-34 octets"
+            },
+            {
+              "name": "PDU session reactivation result",
+              "iei": "0x26",
+              "length": "4-34 octets"
+            },
+            {
+              "name": "PDU session reactivation result error cause",
+              "iei": "0x72",
+              "length": "5-515 octets"
+            },
+            {
+              "name": "EAP Message",
+              "iei": "0x78",
+              "length": "7-1503 octets"
+            },
+            {
+              "name": "T3448 Value",
+              "iei": "0x6B",
+              "length": "3 octets"
+            }
+          ]
+        },
+        "Service Reject": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x4E",
+          "Mandatory Information Elements": [
+            {
+              "name": "5GMM Cause",
+              "iei": null,
+              "length": "1 octet"
+            }
+          ],
+          "Optional Information Elements": [
+            {
+              "name": "PDU session status",
+              "iei": "0x50",
+              "length": "4-34 octets"
+            },
+            {
+              "name": "T3346 value",
+              "iei": "0x5F",
+              "length": "3 octets"
+            },
+            {
+              "name": "EAP Message",
+              "iei": "0x78",
+              "length": "7-1503 octets"
+            },
+            {
+              "name": "T3448 value",
+              "iei": "0x6B",
+              "length": "3 octets"
+            },
+            {
+              "name": "CAG information list",
+              "iei": "0x75",
+              "length": "3-n octets"
+            }
+          ]
+        },
+        "Authentication Reject": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x58",
+          "Mandatory Information Elements": [],
+          "Optional Information Elements": [
+            {
+              "name": "EAP Message",
+              "iei": "0x78",
+              "format": "TLV-E",
+              "length": "7-1503 octets"
+            }
+          ]
+        },
+        "Authentication Failure": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x59",
+          "Mandatory Information Elements": [
+            {
+              "name": "5GMM Cause",
+              "iei": null,
+              "length": "1 octet"
+            }
+          ],
+          "Optional Information Elements": [
+            {
+              "name": "Authentication failure parameter (AUTS)",
+              "iei": "0x30",
+              "length": "16 octets"
+            }
+          ]
+        },
+        "Authentication Result": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x5A",
+          "Mandatory Information Elements": [
+            {
+              "name": "ngKSI + Spare half octet",
+              "iei": null,
+              "length": "1 octet",
+              "example": "0x07"
+            },
+            {
+              "name": "EAP Message",
+              "iei": "0x78",
+              "length": "6-1502 octets",
+              "example": "<EAP‐Result‐Payload>"
+            }
+          ],
+          "Optional Information Elements": [
+            {
+              "name": "ABBA",
+              "iei": "0x38",
+              "length": "4-n octets",
+              "example": "0x38 01 AA BB"
+            }
+          ]
+        },
+        "Identity Request": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x5B",
+          "Mandatory Information Elements": [
+            {
+              "name": "Identity Type + Spare half octet",
+              "iei": null,
+              "length": "1 octet",
+              "example": "0x11"
+            }
+          ],
+          "Optional Information Elements": []
+        },
+        "Identity Response": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x5C",
+          "Mandatory Information Elements": [
+            {
+              "name": "Mobile Identity",
+              "iei": null,
+              "length": "3-n octets",
+              "type": "5G-SUCI or 5G-GUTI",
+              "example": "0x03 D2 10 F1 23 45 67 89AB"
+            }
+          ],
+          "Optional Information Elements": []
+        },
+        "Security Mode Complete": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x5E",
+          "Mandatory Information Elements": [],
+          "Optional Information Elements": [
+            {
+              "name": "IMEISV",
+              "iei": "0x77",
+              "length": "12 octets",
+              "example": "0x0C D2 10 12 34 56 78 90 AB CD EF 01"
+            },
+            {
+              "name": "NAS message container",
+              "iei": "0x71",
+              "length": "4-n octets",
+              "example": "0x04 21 01 02 03"
+            },
+            {
+              "name": "non-IMEISV PEI",
+              "iei": "0x78",
+              "length": "7-n octets",
+              "example": "0x07 01 23 45 67 89 AB CD"
+            }
+          ]
+        },
+        "Security Mode Reject": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x5F",
+          "Mandatory Information Elements": [
+            {
+              "name": "5GMM Cause",
+              "iei": null,
+              "format": "V",
+              "length": "1 octet",
+              "example": "0x05"
+            }
+          ],
+          "Optional Information Elements": []
+        },
+        "5GMM Status": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x64",
+          "Mandatory Information Elements": [
+            {
+              "name": "5GMM Cause",
+              "iei": null,
+              "length": "1 octet",
+              "example": "0x02"
+            }
+          ],
+          "Optional Information Elements": []
+        },
+        "Notification": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x65",
+          "Mandatory Information Elements": [
+            {
+              "name": "Access Type + Spare half octet",
+              "iei": null,
+              "length": "1 octet",
+              "example": "0x21"
+            }
+          ],
+          "Optional Information Elements": []
+        },
+        "Notification Response": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x66",
+          "Mandatory Information Elements": [],
+          "Optional Information Elements": [
+            {
+              "name": "PDU session status",
+              "iei": "0x50",
+              "length": "4-34 octets"
+            }
+          ]
+        },
+        "UL NAS Transport": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x67",
+          "Mandatory Information Elements": [
+            {
+              "name": "Payload container type + Spare half octet",
+              "iei": null,
+              "length": "1 octet",
+              "example": "0x10"
+            },
+            {
+              "name": "Payload container",
+              "iei": "0x71",
+              "length": "3-65537 octets",
+              "example": "0x03 21 01 02 03"
+            }
+          ],
+          "Optional Information Elements": [
+            {
+              "name": "PDU session ID",
+              "iei": "0x12",
+              "length": "2 octets",
+              "example": "0x1202"
+            },
+            {
+              "name": "Old PDU session ID",
+              "iei": "0x59",
+              "length": "2 octets",
+              "example": "0x5903"
+            },
+            {
+              "name": "Request type",
+              "iei": "0x08",
+              "length": "1 octet",
+              "example": "0x08"
+            },
+            {
+              "name": "S-NSSAI",
+              "iei": "0x22",
+              "length": "3-10 octets",
+              "example": "0x2203F10203"
+            },
+            {
+              "name": "DNN",
+              "iei": "0x25",
+              "length": "3-102 octets",
+              "example": "0x2505 75736572"
+            },
+            {
+              "name": "Additional information",
+              "iei": "0x24",
+              "length": "3-n octets",
+              "example": "0x2403ABCDEF"
+            },
+            {
+              "name": "MA PDU session information",
+              "iei": "0xA-",
+              "length": "1 octet",
+              "example": "0xA1"
+            },
+            {
+              "name": "Release assistance indication",
+              "iei": "0xF-",
+              "length": "1 octet",
+              "example": "0xF1"
+            }
+          ]
+        },
+        "DL NAS Transport": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x68",
+          "Mandatory Information Elements": [
+            {
+              "name": "Payload container type + Spare half octet",
+              "iei": null,
+              "length": "1 octet",
+              "example": "0x10"
+            },
+            {
+              "name": "Payload container",
+              "iei": "0x71",
+              "length": "3-65537 octets",
+              "example": "0x03 21 01 02 03"
+            }
+          ],
+          "Optional Information Elements": [
+            {
+              "name": "PDU session ID",
+              "iei": "0x12",
+              "length": "2 octets",
+              "example": "0x1202"
+            },
+            {
+              "name": "Additional information",
+              "iei": "0x24",
+              "length": "3-n octets",
+              "example": "0x2403ABCDEF"
+            },
+            {
+              "name": "5GMM Cause",
+              "iei": "0x58",
+              "length": "2 octets",
+              "example": "0x58 03"
+            },
+            {
+              "name": "Back-off timer value",
+              "iei": "0x37",
+              "length": "3 octets",
+              "example": "0x3703A1B2C3"
+            }
+          ]
+        },
+        "Network Slice-Specific Authentication Command": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x50",
+          "Mandatory Information Elements": [
+            {
+              "name": "S-NSSAI",
+              "iei": "0x22",
+              "length": "2-5 octets"
+            },
+            {
+              "name": "EAP Message",
+              "iei": "0x78",
+              "length": "6-1502 octets"
+            }
+          ],
+          "Optional Information Elements": []
+        },
+        "Network Slice-Specific Authentication Complete": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x51",
+          "Mandatory Information Elements": [
+            {
+              "name": "S-NSSAI",
+              "iei": "0x22",
+              "length": "2-5 octets"
+            },
+            {
+              "name": "EAP Message",
+              "iei": "0x78",
+              "length": "6-1502 octets"
+            }
+          ],
+          "Optional Information Elements": []
+        },
+        "Network Slice-Specific Authentication Result": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x52",
+          "Mandatory Information Elements": [
+            {
+              "name": "S-NSSAI",
+              "iei": "0x22",
+              "length": "2-5 octets"
+            },
+            {
+              "name": "EAP Message",
+              "iei": "0x78",
+              "length": "6-1502 octets"
+            }
+          ],
+          "Optional Information Elements": []
+        },
+        "Configuration Update Command": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x54",
+          "Mandatory Information Elements": [],
+          "Optional Information Elements": [
+            {
+              "name": "Configuration update indication",
+              "iei": "0xD-",
+              "length": "1 octet"
+            },
+            {
+              "name": "5G-GUTI",
+              "iei": "0x77",
+              "length": "14 octets"
+            },
+            {
+              "name": "TAI list",
+              "iei": "0x54",
+              "length": "9-114 octets"
+            },
+            {
+              "name": "Allowed NSSAI",
+              "iei": "0x15",
+              "length": "4-74 octets"
+            },
+            {
+              "name": "Service area list",
+              "iei": "0x27",
+              "length": "6-114 octets"
+            },
+            {
+              "name": "Full name for network",
+              "iei": "0x43",
+              "length": "3-n octets"
+            },
+            {
+              "name": "Short name for network",
+              "iei": "0x45",
+              "length": "3-n octets"
+            },
+            {
+              "name": "Local time zone",
+              "iei": "0x46",
+              "length": "2 octets"
+            },
+            {
+              "name": "Universal time and local time zone",
+              "iei": "0x47",
+              "length": "8 octets"
+            },
+            {
+              "name": "Network daylight saving time",
+              "iei": "0x49",
+              "length": "3 octets"
+            },
+            {
+              "name": "LADN information",
+              "iei": "0x79",
+              "length": "3-1715 octets"
+            },
+            {
+              "name": "MICO indication",
+              "iei": "0xB-",
+              "length": "1 octet"
+            },
+            {
+              "name": "Network slicing indication",
+              "iei": "0x9-",
+              "length": "1 octet"
+            },
+            {
+              "name": "Configured NSSAI",
+              "iei": "0x31",
+              "length": "4-146 octets"
+            },
+            {
+              "name": "Rejected NSSAI",
+              "iei": "0x11",
+              "length": "4-42 octets"
+            },
+            {
+              "name": "Operator-defined access category definitions",
+              "iei": "0x76",
+              "length": "3-8233 octets"
+            },
+            {
+              "name": "SMS indication",
+              "iei": "0xF-",
+              "length": "1 octet"
+            },
+            {
+              "name": "T3447 Value",
+              "iei": "0x6C",
+              "length": "3 octets"
+            },
+            {
+              "name": "CAG information list",
+              "iei": "0x75",
+              "length": "3-n octets"
+            },
+            {
+              "name": "UE radio capability ID",
+              "iei": "0x67",
+              "length": "3-n octets"
+            },
+            {
+              "name": "UE radio capability ID deletion indication",
+              "iei": "0xA-",
+              "length": "1 octet"
+            },
+            {
+              "name": "5GS registration result",
+              "iei": "0x44",
+              "length": "3 octets"
+            },
+            {
+              "name": "Truncated 5G-S-TMSI configuration",
+              "iei": "0x1B",
+              "length": "3 octets"
+            },
+            {
+              "name": "Additional configuration indication",
+              "iei": "0xC-",
+              "length": "1 octet"
+            },
+            {
+              "name": "Extended rejected NSSAI",
+              "iei": "0x68",
+              "length": "5-90 octets"
+            },
+            {
+              "name": "Service-level-AA container",
+              "iei": "0x72",
+              "length": "6-n octets"
+            },
+            {
+              "name": "NSSRG information",
+              "iei": "0x70",
+              "length": "7-65538 octets"
+            },
+            {
+              "name": "Disaster roaming wait range",
+              "iei": "0x14",
+              "length": "4 octets"
+            },
+            {
+              "name": "Disaster return wait range",
+              "iei": "0x2C",
+              "length": "4 octets"
+            },
+            {
+              "name": "List of PLMNs to be used in disaster condition",
+              "iei": "0x13",
+              "length": "2-n octets"
+            },
+            {
+              "name": "Extended CAG information list",
+              "iei": "0x71",
+              "length": "3-n octets"
+            },
+            {
+              "name": "Updated PEIPS assistance information",
+              "iei": "0x1F",
+              "length": "3-n octets"
+            },
+            {
+              "name": "NSAG information",
+              "iei": "0x73",
+              "length": "10-n octets"
+            },
+            {
+              "name": "Priority indicator",
+              "iei": "0xE-",
+              "length": "1 octet"
+            }
+          ]
+        },
+        "Configuration Update Complete": {
+          "protocol_discriminator": "0x7e",
+          "security_header_type": "0x00",
+          "message_type_hex": "0x55",
+          "Mandatory Information Elements": [],
+          "Optional Information Elements": []
+        }
+      },
+      "5GSM": {
+        "PDU Session Establishment Request": {
+          "protocol_discriminator": "0x2E",
+          "pdu_session_id": "0x05",
+          "pti": "0x01",
+          "message_type_hex": "0xC1",
+          "Mandatory Information Elements": [
+            {
+              "name": "Integrity protection maximum data rate",
+              "iei": null,
+              "length": "2 octets",
+              "example": "0x0000"
+            }
+          ],
+          "Optional Information Elements": [
+            {
+              "name": "PDU session type",
+              "iei": "0x09",
+              "length": "1 octet",
+              "example": "0x01"
+            },
+            {
+              "name": "SSC mode",
+              "iei": "0x0A",
+              "length": "1 octet",
+              "example": "0x01"
+            },
+            {
+              "name": "5GSM capability",
+              "iei": "0x28",
+              "length": "3-15 octets",
+              "example": "0x28 02 00 01"
+            },
+            {
+              "name": "Maximum number of supported packet filters",
+              "iei": "0x55",
+              "length": "3 octets",
+              "example": "0x55 00 10"
+            },
+            {
+              "name": "Always-on PDU session requested",
+              "iei": "0x0B",
+              "length": "1 octet",
+              "example": "0x0B"
+            },
+            {
+              "name": "SM PDU DN request container",
+              "iei": "0x39",
+              "length": "3-255 octets",
+              "example": "0x39 05 01 02 03 04 05"
+            },
+            {
+              "name": "Extended protocol configuration options",
+              "iei": "0x7B",
+              "length": "4-65538 octets",
+              "example": "0x7B 00 08 80 00 0D 00 00 00 00 00"
+            },
+            {
+              "name": "IP header compression configuration",
+              "iei": "0x66",
+              "length": "5-257 octets",
+              "example": "0x66 03 01 02 03"
+            },
+            {
+              "name": "DS-TT Ethernet port MAC address",
+              "iei": "0x6E",
+              "length": "8 octets",
+              "example": "0x6E 06 01 02 03 04 05 06"
+            },
+            {
+              "name": "UE-DS-TT residence time",
+              "iei": "0x6F",
+              "length": "10 octets",
+              "example": "0x6F 08 00 00 00 00 00 00 00 00"
+            },
+            {
+              "name": "Port management information container",
+              "iei": "0x74",
+              "length": "8-65538 octets",
+              "example": "0x74 00 06 01 02 03 04 05 06"
+            },
+            {
+              "name": "Ethernet header compression configuration",
+              "iei": "0x1F",
+              "length": "3 octets",
+              "example": "0x1F 01 00"
+            },
+            {
+              "name": "Suggested interface identifier",
+              "iei": "0x29",
+              "length": "11 octets",
+              "example": "0x29 09 01 02 03 04 05 06 07 08 09"
+            },
+            {
+              "name": "Service-level-AA container",
+              "iei": "0x72",
+              "length": "6-n octets",
+              "example": "0x72 00 04 01 02 03 04"
+            },
+            {
+              "name": "Requested MBS container",
+              "iei": "0x70",
+              "length": "8-65538 octets",
+              "example": "0x70 00 06 01 02 03 04 05 06"
+            },
+            {
+              "name": "PDU session pair ID",
+              "iei": "0x34",
+              "length": "3 octets",
+              "example": "0x34 01 05"
+            },
+            {
+              "name": "RSN",
+              "iei": "0x35",
+              "length": "3 octets",
+              "example": "0x35 01 01"
+            }
+          ]
+        },
+        "5GSM STATUS": {
+          "protocol_discriminator": "0x2E",
+          "pdu_session_id": "0x05",
+          "pti": "0x01",
+          "message_type_hex": "0x6A",
+          "Mandatory Information Elements": [
+            {
+              "name": "5GSM cause",
+              "iei": null,
+              "length": "1 octet",
+              "example": "0x1A"
+            }
+          ],
+          "Optional Information Elements": []
+        },
+        "PDU Session Authentication Command": {
+          "protocol_discriminator": "0x2E",
+          "pdu_session_id": "0x05",
+          "pti": "0x01",
+          "message_type_hex": "0xC3",
+          "Mandatory Information Elements": [
+            {
+              "name": "EAP message",
+              "iei": null,
+              "length": "6-1502 octets",
+              "example": "0x00 06 01 01 00 04 01 00"
+            }
+          ],
+          "Optional Information Elements": [
+            {
+              "name": "Extended protocol configuration options",
+              "iei": "0x7B",
+              "length": "4-65538 octets",
+              "example": "0x7B 00 08 80 00 0D 00 00 00 00 00"
+            },
+            {
+              "name": "Remote UE handling information list",
+              "iei": "0x7A",
+              "length": "4-65538 octets",
+              "example": "0x7A 00 06 01 02 03 04 05 06"
+            }
+          ]
+        },
+        "PDU Session Authentication Complete": {
+          "protocol_discriminator": "0x2E",
+          "pdu_session_id": "0x05",
+          "pti": "0x01",
+          "message_type_hex": "0xC4",
+          "Mandatory Information Elements": [
+            {
+              "name": "EAP message",
+              "iei": null,
+              "length": "6-1502 octets",
+              "example": "0x00 06 02 01 00 04 03 00"
+            }
+          ],
+          "Optional Information Elements": [
+            {
+              "name": "Extended protocol configuration options",
+              "iei": "0x7B",
+              "length": "4-65538 octets",
+              "example": "0x7B 00 08 80 00 0D 00 00 00 00 00"
+            },
+            {
+              "name": "Remote UE handling information list",
+              "iei": "0x7A",
+              "length": "4-65538 octets",
+              "example": "0x7A 00 06 01 02 03 04 05 06"
+            }
+          ]
+        },
+        "PDU Session Authentication Result": {
+          "protocol_discriminator": "0x2E",
+          "pdu_session_id": "0x05",
+          "pti": "0x01",
+          "message_type_hex": "0xC5",
+          "Mandatory Information Elements": [],
+          "Optional Information Elements": [
+            {
+              "name": "EAP message",
+              "iei": "0x78",
+              "length": "7-1503 octets",
+              "example": "0x78 00 08 02 01 00 06 03 00"
+            },
+            {
+              "name": "Extended protocol configuration options",
+              "iei": "0x7B",
+              "length": "4-65538 octets",
+              "example": "0x7B 00 08 80 00 0D 00 00 00 00 00"
+            }
+          ]
+        }
+      },
+      "message_type_reference": {
+        "nas": {
+          "0x41": "Registration Request",
+          "0x42": "Registration Accept",
+          "0x43": "Registration Complete",
+          "0x44": "Registration Reject",
+          "0x45": "Deregistration Request (UE originating)",
+          "0x46": "Deregistration Accept (UE originating)",
+          "0x4C": "Service Request",
+          "0x4D": "Service Accept",
+          "0x4E": "Service Reject",
+          "0x4F": "Control-Plane Service Request",
+          "0x50": "Network Slice-Specific Authentication Command",
+          "0x51": "Network Slice-Specific Authentication Complete",
+          "0x52": "Network Slice-Specific Authentication Result",
+          "0x54": "Configuration Update Command",
+          "0x55": "Configuration Update Complete",
+          "0x56": "Authentication Request",
+          "0x57": "Authentication Response",
+          "0x58": "Authentication Reject",
+          "0x59": "Authentication Failure",
+          "0x5A": "Authentication Result",
+          "0x5B": "Identity Request",
+          "0x5C": "Identity Response",
+          "0x5D": "Security Mode Command",
+          "0x5E": "Security Mode Complete",
+          "0x5F": "Security Mode Reject",
+          "0x64": "5GMM Status",
+          "0x65": "Notification",
+          "0x66": "Notification Response",
+          "0x67": "UL NAS Transport",
+          "0x68": "DL NAS Transport",
+          "0xC1": "PDU Session Establishment Request",
+          "0x6A": "5GSM Status",
+          "0xC3": "PDU Session Authentication Command",
+          "0xC4": "PDU Session Authentication Complete",
+          "0xC5": "PDU Session Authentication Result"
+        }
+      }
+    }
+  }
+}
