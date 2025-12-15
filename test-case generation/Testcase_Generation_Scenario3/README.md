@@ -23,11 +23,3 @@ Run this command (replace [GENERATED_FILENAME] with the actual file from Step 3)
 python compare_json_files.py [GENERATED_FILENAME] manual_ground_truth.json
 Example:
 python compare_json_files.py scenario3_attack_std_20251118_1230.json manual_ground_truth.json
-Expected Output:
---- Checking Step 1: Association ---
-Source IP | LLM: 192.168.37.131 | Manual: 192.168.37.131 | PASS
-...
---- Checking Step 2: Attack ---
-Target SEID | LLM: 2508 | Manual: 2508 | PASS
-Target TEID | LLM: 61033 | Manual: 61033 | PASS
-FINAL ACCURACY: 100.00%
